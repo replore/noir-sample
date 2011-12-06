@@ -75,8 +75,8 @@
     [:li (link-to "/clojure-func" "clojure func and vals") ]]))
 
 ;; can't use in hekeru?
-;; (defpage "/" []
-;; (jpg-to-page-seq (range 11)))
+(defpage "/" []
+ (jpg-to-page-seq (range 11)))
 
 (defpage "/num-seq" []
   (jpg-to-page-seq (range 101)))
