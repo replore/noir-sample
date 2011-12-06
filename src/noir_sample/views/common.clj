@@ -10,3 +10,19 @@
               [:body
                [:div#wrapper
                 content]]))
+
+
+;; Utility method
+(defn convert-jpg-to-URL [name]
+  (str "http://" name ".jpg.to"))
+
+(defpartial jpg-to-page [name]
+  (layout
+   [:h1 (str name)]
+   [:img {"src" (convert-jpg-to-URL name)}]))
+
+
+(defpartial link-jpg-to-src [name]
+  [:li name]
+  [:li
+   [:img {"src" (convert-jpg-to-URL (str name))}]])
