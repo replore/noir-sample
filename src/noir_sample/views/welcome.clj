@@ -63,9 +63,11 @@
 (defpage "/sample" []
   (common/layout
    [:h1 "Sample noir Page (mainly using jpg.to)"]
+   [:h2 "眠い"]
    [:ul
     [:li (link-to "/num-seq" "num-seq(0~10)")]
     [:li (link-to "/alpha-seq" "alp-seq(a~z)")]
+    [:li (link-to "/orenoimouto" "orenoimouto (using Web API sample)") ]
     [:li (link-to "/clojure-func" "clojure func and vals") ]]))
 
 ;; can't use in hekeru?
