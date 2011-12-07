@@ -10,7 +10,17 @@
 
 (def base-uri "http://oreno.imouto.org/tag/index.json?")
 (def oreno-uri "http://oreno.imouto.org/tag/index.json?name=&type=4&order=count")
+(def oreno-tag-uri "http://oreno.imouto.org/post/index")
 (def tag-fields ["count" "name"])
+
+
+;; should use hiccup utility when making uri
+(defpartial link-to-orenoimouto-contents [name count]
+  [:li (link-to (str oreno-tag-uri "?tags=" name) name)]
+  [:li count]
+  [:li
+   [:img {"src" (common/convert-jpg-to-URL (str name))}]])
+
 
 (defpartial orenoimouto-jpg-to-page [url]
    (common/layout
@@ -27,7 +37,7 @@
     [:h1 "Using Oreno Imouto API"]
     [:ul
      (let [json-data (json/parse-string (:body (client/get url)))]
-       (map (fn [tag] (common/link-jpg-to-src (tag "name"))) (drop (* 50 (- page 1)) json-data)))
+       (map (fn [tag] (link-to-orenoimouto-contents (tag "name") (tag "count"))) (drop (* 50 (- page 1)) json-data)))
       ]))
 
 
