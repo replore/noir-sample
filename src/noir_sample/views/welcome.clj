@@ -1,5 +1,6 @@
 (ns noir-sample.views.welcome
   (:require [noir-sample.views.common :as common]
+	    [ring.util.response :as resp]
             [noir.content.getting-started])
   (:use noir.core
         hiccup.core
@@ -46,15 +47,6 @@
 (defpage "/jpgto/:name" {:keys [name]}
   (jpg-to-page name))
 
-;; (defpage "/:name" {:keys [name]}
-;;    (jpg-to-page name))
-
-(defpage "/ohoho" []
-  (common/layout
-   [:h1 "ohoho"]))
-
-;;(defpage "/" []
-;;   (resp/redirect "/ohoho"))
 
 (defpartial jpg-to-page-seq [seq]
    (common/layout
@@ -74,9 +66,8 @@
     [:li (link-to "/programing-languages" "Programing languages and it's image") ]
     [:li (link-to "/clojure-func" "clojure func and vals") ]]))
 
-;; can't use in hekeru?
 (defpage "/" []
- (jpg-to-page-seq (range 11)))
+  (resp/redirect "/sample"))
 
 (defpage "/num-seq" []
   (jpg-to-page-seq (range 101)))

@@ -1,5 +1,6 @@
 (ns noir-sample.views.orenoimouto
   (:require [noir-sample.views.common :as common]
+	    [ring.util.response :as resp]
  	    [cheshire.core :as json]
  	    [clj-http.client :as client]
             [noir.content.getting-started])
@@ -12,7 +13,7 @@
 (def oreno-uri "http://oreno.imouto.org/tag/index.json?name=&type=4&order=count")
 (def oreno-tag-uri "http://oreno.imouto.org/post/index")
 (def tag-fields ["count" "name"])
-
+(def page-limit 50)
 
 ;; should use hiccup utility when making uri
 (defpartial link-to-orenoimouto-contents [name count]
@@ -37,15 +38,16 @@
     [:h1 "Using Oreno Imouto API"]
     [:ul
      (let [json-data (json/parse-string (:body (client/get url)))]
-       (map (fn [tag] (link-to-orenoimouto-contents (tag "name") (tag "count"))) (drop (* 50 (- page 1)) json-data)))
+       (map (fn [tag] (link-to-orenoimouto-contents (tag "name") (tag "count"))) (drop (* page-limit (- page 1)) json-data)))
       ]))
 
 
-(defpage "/orenoimouto" []
-  (orenoimouto-jpg-to-page oreno-uri))
-
-
 (defpage "/orenoimouto/:page" {:keys [page]}
-    (orenoimouto-jpg-to-pages (str oreno-uri "&limit=" (* 50 (Integer/parseInt page))) (Integer/parseInt page)))
+    (orenoimouto-jpg-to-pages (str oreno-uri "&limit=" (* page-limit (Integer/parseInt page))) (Integer/parseInt page)))
+
+(defpage "/orenoimouto" []
+  (resp/redirect "/orenoimouto/1"))
+
+
 
 
