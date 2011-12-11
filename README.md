@@ -4,8 +4,9 @@ A website written in noir.
 
 supports these features
 
-- using Web API Demo (get and processing API data(json) and show it in browser)
-- using UTF-8 encoding sample(If you are non-Ascii language user, it could help because default noir project.clj doesn't support this settings.)
+- Web API Demo (get and processing API data(json) and show it in browser)
+- Twitter API usage Demo
+- UTF-8 encoding sample(If you are non-Ascii language user, it could help because default noir project.clj doesn't support this settings.)
 
 ## Usage
 
@@ -16,7 +17,7 @@ lein run
 
 ## sample website
 
-sample sebsite using this source
+sample website using this source
 http://sharp-warrior-4964.herokuapp.com/sample
 
 ## License
