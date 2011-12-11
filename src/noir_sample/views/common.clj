@@ -6,7 +6,8 @@
             (html5
               [:head
                [:title "noir-sample"]
-               (include-css "/css/reset.css")]
+;;               (include-css "/css/reset.css")
+	       ]
               [:body
                [:div#wrapper
                 content]]))
@@ -24,5 +25,5 @@
 
 (defpartial link-jpg-to-src [name]
   [:li name]
-  [:li
-   [:img {"src" (convert-jpg-to-URL (str name))}]])
+;  [:li
+   [:img {"src" (convert-jpg-to-URL (str name))}])

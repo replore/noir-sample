@@ -17,10 +17,9 @@
 
 ;; should use hiccup utility when making uri
 (defpartial link-to-orenoimouto-contents [name count]
-  [:li (link-to (str oreno-tag-uri "?tags=" name) name)]
-  [:li count]
-  [:li
-   [:img {"src" (common/convert-jpg-to-URL (str name))}]])
+  [:li (link-to (str oreno-tag-uri "?tags=" name) name)
+   [:ul count]
+   [:ul [:img {"src" (common/convert-jpg-to-URL (str name))}]]])
 
 
 (defpartial orenoimouto-jpg-to-page [url]
