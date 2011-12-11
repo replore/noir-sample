@@ -19,10 +19,15 @@
   (common/layout
    [:h1 "Twitter sample"]
    [:h2 "This is Twitter Public timeline"]
-   [:ul
+   [:li "Timeline"
    (let [tl (:body (public-timeline))]
      (for [t tl]
-       [:li (:text t)]
+;;       [:li (:source t)]
+       [:ul
+	[:li (:text t)]
+	[:li (:name (:user t))]
+	[:li (:source t)]]
+;       [:li (:text t)]
 ;;	[:ul (:text t)]]
      ))
     ]))
