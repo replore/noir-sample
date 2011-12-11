@@ -16,10 +16,18 @@
 (def page-limit 50)
 
 ;; should use hiccup utility when making uri
+
+(defpartial orenoimouto-pager [page]
+  (let [oreno-page (fn [page] (link-to (str "/orenoimouto/" page) page))]
+    (if (< page 2)
+      (map oreno-page (range page (+ 2 page)))
+      (map oreno-page (range (dec page) (+ 2 page))))))
+
 (defpartial link-to-orenoimouto-contents [name count]
   [:li (link-to (str oreno-tag-uri "?tags=" name) name)
    [:ul count]
    [:ul [:img {"src" (common/convert-jpg-to-URL (str name))}]]])
+
 
 
 (defpartial orenoimouto-jpg-to-page [url]
@@ -32,13 +40,15 @@
       ]))
 
 (defpartial orenoimouto-jpg-to-pages [url page]
-   (common/layout
-    [:h1 "Orenoimouto sample (jpg.to)"]
-    [:h1 "Using Oreno Imouto API"]
-    [:ul
-     (let [json-data (json/parse-string (:body (client/get url)))]
-       (map (fn [tag] (link-to-orenoimouto-contents (tag "name") (tag "count"))) (drop (* page-limit (- page 1)) json-data)))
-      ]))
+  (common/layout
+   [:h1 "Orenoimouto sample (jpg.to)"]
+   [:h1 "Using Oreno Imouto API"]
+   (orenoimouto-pager page)
+   [:ul
+    (let [json-data (json/parse-string (:body (client/get url)))]
+      (map (fn [tag] (link-to-orenoimouto-contents (tag "name") (tag "count"))) (drop (* page-limit (- page 1)) json-data)))
+    ]
+   (orenoimouto-pager page)))
 
 
 (defpage "/orenoimouto/:page" {:keys [page]}
