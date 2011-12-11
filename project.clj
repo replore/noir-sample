@@ -3,6 +3,7 @@
             :dependencies [[org.clojure/clojure "1.3.0"]
 			   [cheshire "2.0.2"]
 			   [clj-http "0.1.3"]
+		           [twitter-api "0.6.4"]
 			   [org.clojure/clojure-contrib "1.2.0"]
                            [noir "1.2.1"]]
 	    :jvm-opts ["-Dfile.encoding=UTF8"]

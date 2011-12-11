@@ -63,6 +63,7 @@
     [:li (link-to "/num-seq" "num-seq(0~10)")]
     [:li (link-to "/alpha-seq" "alp-seq(a~z)")]
     [:li (link-to "/orenoimouto" "orenoimouto (using Web API sample)") ]
+    [:li (link-to "/twitter" "twitter (using Twitter API sample)") ]
     [:li (link-to "/programing-languages" "Programing languages and it's image") ]
     [:li (link-to "/clojure-func" "clojure func and vals") ]]))
 
